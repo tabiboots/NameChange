@@ -14,8 +14,27 @@
     </div>
     <script type="module" src="script.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            localStorage.clear(); // Clear all local storage when the page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Force 80% zoom
+            document.body.style.zoom = "80%";
+            
+            // For Firefox and other browsers that don't support zoom property
+            document.body.style.transform = "scale(0.8)";
+            document.body.style.transformOrigin = "center top";
+            
+            // Prevent zoom changes
+            document.addEventListener('wheel', function(e) {
+                if (e.ctrlKey) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+            
+            // Prevent zoom keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && (e.key === '+' || e.key === '-' || e.key === '0')) {
+                    e.preventDefault();
+                }
+            });
         });
     </script>
 </body>
