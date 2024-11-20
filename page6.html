@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 6</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container-wrapper">
+        <div class="gameContainer">
+            <img src="assets/page6roses.png" class="roses" style="display: none;">
+            <div class="form-wrapper" name="MaritalStatus" style=" display: none;">
+                <div class="form-title" name="loverFormTitle">Are you currently married?</div>
+                <div class="button-container" name="MaritalStatusButtons">
+                    <button class="responseButton" name="CurrentlyMarried" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.CurrentlyMarriedYes)">Yes</button>
+                    <button class="responseButton" name="CurrentlyMarried" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.CurrentlyMarriedNo)">No</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="PreviousMaritalStatus" style=" display: none;">
+                <div class="form-title" name="loverFormTitle">Were you previously married?</div>
+                <div class="button-container" name="PreviousMaritalStatusButtons">
+                    <button class="responseButton" name="PreviouslyMarried" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.Interlude)">Yes</button>
+                    <button class="responseButton" name="PreviouslyMarried" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.Interlude)">No</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="ChildrenUnder21" style=" display: none;">
+                <div class="form-title" name="loverFormTitle">Do you have any children under 21?</div>
+                <div class="button-container" name="ChildrenUnder21Buttons">
+                    <button class="responseButton" name="ChildrenUnder21" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.Under21Yes)">Yes</button>
+                    <button class="responseButton" name="ChildrenUnder21" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.Under21No)">No</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="ChildSupport" style="display: none;">
+                <div class="form-title">Do you have to pay child support?</div>
+                <div class="button-container" name="ChildSupportButtons">
+                    <button class="responseButton" name="ChildSupport" data-value="true">Yes</button>
+                    <button class="responseButton" name="ChildSupport" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.ChildSupportNo)">No</button>
+                </div>
+            </div>
+            <div class = "form-wrapper" name="ChildSupportExtended" style="display: none;">
+                <div class="form-title">Are you up to date on your child support payments?</div>
+                <div class="button-container" name="ChildSupportExtendedButtons">
+                    <button class="responseButton" name="ChildSupportPayments" data-value="true">Yes</button>
+                    <button class="responseButton" name="ChildSupportPayments" data-value="false">No</button>
+                </div>
+                <div class="form-title">What court issued the child support?</div>
+                <input type="text" class="formField" name="CourtIssuingChildSupportOrder" placeholder="Court Name">
+                <div class="form-title">What is your child support <br>collections unit?</div>
+                <input type="text" class="formField" name="SupportCollectionsUnit" placeholder="Collections Unit">
+                <div class="button-container" name="submitChildSupportExtendedContainer" style="display: none;">
+                    <button class="submitButton" name="submitChildSupportExtended">Submit</button>
+                </div>
+            </div>
+            <div class="form-wrapper" name="PaymentsBehind" style="display: none;">
+                <div class="form-title">How much are you behind on your child support payments?</div>
+                <input type="text" class="formField" name="ChildSupportArrears" placeholder="$">
+            </div>
+            <div class="catSitting"></div>
+        </div>
+
+        <div class="dialogueContainer">
+            <div class="profilePicture">
+                <div class="profileBunny"></div>
+            </div>
+            <div class="dialogueTextBox">
+                <!-- dialogue text will appear here -->
+            </div>
+        </div>
+    </div>
+    <script type="module" src="script.js"></script>
+    <script type="module">
+        import formManager from './modules/formManager.js';
+        window.formManager = formManager;
+        import { eventBus } from './modules/EventBus.js';
+        import dialogueManager from './modules/dialogueManager.js';
+        import dialogueSequences from './modules/dialogueData.js';
+        window.dialogueManager = dialogueManager;
+
+        eventBus.on("page6Roses", () => {
+            const roses = document.querySelector(".roses");
+            roses.style.display = "block";
+            
+            // Fade in roses
+            setTimeout(() => {
+                roses.style.opacity = "1";
+                
+                // After roses fade in, show cat and start its animation
+                setTimeout(() => {
+                    const cat = document.querySelector(".catSitting");
+                    cat.style.opacity = "1";
+                    
+                    // Start cat animation after fade-in
+                    setTimeout(() => {
+                        cat.classList.add('animate');
+                    }, 1500); // Wait for fade-in to complete
+                }, 1500); // Wait 1 second after roses fade in
+            }, 10);
+        });
+
+        eventBus.on("MaritalStatus", () => {
+            const maritalStatusForm = document.querySelector('.form-wrapper[name="MaritalStatus"]');
+            maritalStatusForm.style.display = "block";
+            
+            // Add click listeners to both buttons
+            const buttons = document.querySelectorAll('button[name="CurrentlyMarried"]');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    maritalStatusForm.style.display = "none";
+                });
+            });
+        });
+
+        eventBus.on("MaritalStatusPreviousMarriage", () => {
+            const previousMaritalStatusForm = document.querySelector('.form-wrapper[name="PreviousMaritalStatus"]');
+            previousMaritalStatusForm.style.display = "block";
+
+            const buttons = document.querySelectorAll('button[name="PreviouslyMarried"]');
+            buttons.forEach(button => {
+                button.addEventListener('click', () => {
+                    previousMaritalStatusForm.style.display = "none";
+                });
+            });
+        });
+
+        eventBus.on("ChildrenUnder21", () => {
+            const childrenUnder21Form = document.querySelector('.form-wrapper[name="ChildrenUnder21"]');
+            childrenUnder21Form.style.display = "block";
+
+            const yesButton = document.querySelector('button[name="ChildrenUnder21"][data-value="true"]');
+            const noButton = document.querySelector('button[name="ChildrenUnder21"][data-value="false"]');
+
+            noButton.addEventListener('click', () => {
+                childrenUnder21Form.style.display = "none";
+                localStorage.setItem("ChildSupport", "false");
+            });
+            yesButton.addEventListener('click', () => {
+                childrenUnder21Form.style.display = "none";
+            });
+        });
+
+        eventBus.on("ChildSupport", () => {
+            const childSupportForm = document.querySelector('.form-wrapper[name="ChildSupport"]');
+            childSupportForm.style.display = "block";
+
+            const cat = document.querySelector('.catSitting');
+            cat.classList.remove('animate');
+            cat.classList.add('catSitUp');
+            
+            // Listen for when catSitUp animation ends
+            cat.addEventListener('animationend', () => {
+                cat.classList.remove('catSitUp');
+                cat.classList.add('catWalking');
+                
+                // Listen for when walking animation ends
+                cat.addEventListener('animationend', () => {
+                    cat.classList.remove('catWalking');
+                    cat.classList.add('catSitDown');
+                }, { once: true });
+            }, { once: true });
+
+            const yesButton = document.querySelector('button[name="ChildSupport"][data-value="true"]');
+            const noButton = document.querySelector('button[name="ChildSupport"][data-value="false"]');
+            const extendedForm = document.querySelector('.form-wrapper[name="ChildSupportExtended"]');
+            const submitContainer = document.querySelector('div[name="submitChildSupportExtendedContainer"]');
+            const childSupportCollector = document.querySelector('input[name="SupportCollectionsUnit"]');
+            yesButton.addEventListener('click', () => {
+                childSupportForm.style.display = "none";
+                extendedForm.style.display = "block";
+
+                childSupportCollector.addEventListener('blur', () => {
+                    submitContainer.style.display = "block";
+                });
+            });
+            noButton.addEventListener('click', () => {
+                childSupportForm.style.display = "none";
+            });
+           
+            const submitButton = document.querySelector('button[name="submitChildSupportExtended"]');
+            const paymentsBehindForm = document.querySelector('.form-wrapper[name="PaymentsBehind"]');
+            submitButton.addEventListener('click', () => {
+                extendedForm.style.display = "none";
+
+                if (localStorage.getItem('ChildSupportPayments') === 'false') {
+                    paymentsBehindForm.style.display = "block";
+                    const arrearsInput = document.querySelector('input[name="ChildSupportArrears"]');
+                    const submitContainer = document.createElement('div');
+                    submitContainer.className = 'button-container';
+                    submitContainer.style.display = 'none';
+                    submitContainer.innerHTML = `
+                        <button class="submitButton" name="submitPaymentsBehind">Submit</button>
+                    `;
+                    paymentsBehindForm.appendChild(submitContainer);
+
+                    arrearsInput.addEventListener('blur', () => {
+                        submitContainer.style.display = 'flex';
+                    });
+
+                    // Add click listener to the new submit button
+                    const paymentsBehindSubmit = submitContainer.querySelector('button[name="submitPaymentsBehind"]');
+                    paymentsBehindSubmit.addEventListener('click', () => {
+                        paymentsBehindForm.style.display = "none";
+                    });
+                } else {
+                    return;
+                }
+            });
+        });
+
+        const paymentButtons = document.querySelectorAll('button[name="ChildSupportPayments"]');
+        paymentButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove selected class from all buttons
+                paymentButtons.forEach(btn => btn.classList.remove('loverSelected'));
+                // Add selected class to clicked button
+                button.classList.add('loverSelected');
+                // Store the selection value
+                localStorage.setItem('ChildSupportPayments', button.dataset.value);
+            });
+        });
+    </script>
+</body>
+</html>
