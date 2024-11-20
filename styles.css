@@ -1,3 +1,11 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: black;
+}
+
 @font-face {
     font-family: 'Silver';
     src: url('assets/Silver.ttf') format('woff2');
