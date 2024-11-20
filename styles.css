@@ -35,25 +35,31 @@ body {
     flex-direction: column; /* Stack children vertically */
     gap: 20px;  /* Adds space between containers */
     align-items: center;
+    min-height: 100vh;
+    padding: 20px 0; /* Add vertical padding */
+    box-sizing: border-box;
+    overflow-y: auto; /* Allow scrolling if content is too tall */
 }
 
 .gameContainer {
     position: relative;
     width: 600px;
-    height: 650px;
+    min-height: 650px; /* Change to min-height */
     border: 3px solid white;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin: 20px auto; /* Add vertical margin */
 }
 
 .dialogueContainer {
     width: 600px;
-    height: 150px;
+    min-height: 150px; /* Change to min-height */
     border: 3px solid white;
     display: flex;
     align-items: float;
+    margin-top: auto; /* Push to bottom of gameContainer */
 }
 
 .profilePicture {
