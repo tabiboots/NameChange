@@ -668,23 +668,24 @@ span.lilDudeText {
 
 @font-face {
     font-family: 'Pixelscript';
-    src: url('assets/pixel-script.ttf');
+    src: url('assets/pixel-script.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
 }
 
 span.lover {
+    font-family: 'Pixelscript', sans-serif;
     color: rgb(255, 138, 196);  /* Light pink color - adjust as needed */
     font-weight: normal;
     font-size: 24px;
-    font-family: 'PF Pixelscript', sans-serif;
 }
 
 .form-title[name="loverFormTitle"] {
     padding: 30px;
     font-size: 30px;
     text-align: center;
-    font-family: 'PF Pixelscript', sans-serif;
+    font-family: 'Pixelscript', sans-serif;
     color: rgb(255, 138, 196);
 }
 
