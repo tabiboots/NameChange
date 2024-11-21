@@ -680,12 +680,12 @@ span.lover {
     font-family: 'Pixelscript', sans-serif;
     color: rgb(255, 138, 196);  /* Light pink color - adjust as needed */
     font-weight: normal;
-    font-size: 24px;
+    font-size: 11px;
 }
 
 .form-title[name="loverFormTitle"] {
     padding: 30px;
-    font-size: 30px;
+    font-size: 12px;
     text-align: center;
     font-family: 'Pixelscript', sans-serif;
     color: rgb(255, 138, 196);
