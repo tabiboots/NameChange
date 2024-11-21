@@ -19,3 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // Make dialogueSequences globally accessible
     window.dialogueSequences = dialogueSequences;
 });
+
+

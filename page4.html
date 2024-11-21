@@ -30,7 +30,7 @@
                 <div class="form-title" name="lilDudeFormTitle">What crime were you convicted of?</div>
                 <input class="formField" name="Crime" type="text">
                 <div class="button-container">
-                    <button class="submitButton" name="SubmitConvictedOfCrime" style="display: none;" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.moveToJudgementsorLiens)">Submit</button>
+                    <button class="submitButton" name="SubmitConvictedOfCrime" style="visibility: hidden;" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.moveToJudgementsorLiens)">Submit</button>
                 </div>
             </div>
             <div class="form-wrapper" name="BankruptcyorJudgements" style="display: none;">
@@ -45,7 +45,7 @@
                     <button class="responseButton" name="JudgmentsOrLiens" data-value="false">No</button>
                 </div>
                 <div class="button-container">
-                    <button class="submitButton" name="SubmitBankruptcyorJudgements" style="display: none;" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.moveToPartyToAction)">Submit</button>
+                    <button class="submitButton" name="SubmitBankruptcyorJudgements" style="visibility: hidden;" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.moveToPartyToAction)">Submit</button>
                 </div>
             </div>
             <div class="form-wrapper" name="PartyToAction" style="display: none;">
@@ -59,7 +59,7 @@
                 <div class="form-title" name="lilDudeFormTitle">Provide details about the lawsuit or court case, including the court where it was filed, the date it was filed, and case number (if known)</div>
                 <textarea class="formField" name="BankruptcyJudgmentsLiensParty-specify" rows="4" style="resize: vertical; min-height: 100px; width: 100%;"></textarea>
                 <div class="button-container">
-                    <button class="submitButton" name="SubmitPartyDetails" style="display: none;" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.fixFormButton)">Submit</button>
+                    <button class="submitButton" name="SubmitPartyDetails" style="visibility: hidden;" onclick="dialogueManager.loadDialogue(dialogueSequences.page4.fixFormButton)">Submit</button>
                 </div>
             </div>
             <div class="form-wrapper" name="endPage4Form" style="display: none;">
@@ -117,7 +117,7 @@
             document.querySelector('[name="page4ConvictedOfCrimeDetails"]').style.display = 'block';
             
             document.querySelector('[name="Crime"]').addEventListener('blur', () => {
-                document.querySelector('[name="SubmitConvictedOfCrime"]').style.display = 'block';
+                document.querySelector('[name="SubmitConvictedOfCrime"]').style.visibility = 'visible';
             });
 
             document.querySelector('[name="SubmitConvictedOfCrime"]').addEventListener('click', () => {
@@ -135,9 +135,9 @@
                 const submitButton = document.querySelector('[name="SubmitBankruptcyorJudgements"]');
                 
                 if (bankruptcySelected && liensSelected) {
-                    submitButton.style.display = 'block';
+                    submitButton.style.visibility = 'visible';
                 } else {
-                    submitButton.style.display = 'none';
+                    submitButton.style.visibility = 'hidden';
                 }
             };
 
@@ -184,7 +184,7 @@
             
             // Show submit button when textarea loses focus
             document.querySelector('textarea[name="BankruptcyJudgmentsLiensParty-specify"]').addEventListener('blur', () => {
-                document.querySelector('[name="SubmitPartyDetails"]').style.display = 'block';
+                document.querySelector('[name="SubmitPartyDetails"]').style.visibility = 'visible';
             });
 
             // Hide form when submitted

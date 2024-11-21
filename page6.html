@@ -9,7 +9,7 @@
 <body>
     <div class="container-wrapper">
         <div class="gameContainer">
-            <img src="assets/page6Roses.png" class="roses" style="display: none;">
+            <img src="assets/page6roses.png" class="roses" style="display: none;">
             <div class="form-wrapper" name="MaritalStatus" style=" display: none;">
                 <div class="form-title" name="loverFormTitle">Are you currently married?</div>
                 <div class="button-container" name="MaritalStatusButtons">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="form-wrapper" name="ChildrenUnder21" style=" display: none;">
-                <div class="form-title" name="loverFormTitle">Do you have any children under 21?</div>
+                <div class="form-title" name="loverFormTitle">Do you have any children under twenty-one?</div>
                 <div class="button-container" name="ChildrenUnder21Buttons">
                     <button class="responseButton" name="ChildrenUnder21" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.Under21Yes)">Yes</button>
                     <button class="responseButton" name="ChildrenUnder21" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.Under21No)">No</button>
@@ -39,16 +39,16 @@
                 </div>
             </div>
             <div class = "form-wrapper" name="ChildSupportExtended" style="display: none;">
-                <div class="form-title">Are you up to date on your child support payments?</div>
+                <div class="form-title">Are your child support payments up to date?</div>
                 <div class="button-container" name="ChildSupportExtendedButtons">
                     <button class="responseButton" name="ChildSupportPayments" data-value="true">Yes</button>
                     <button class="responseButton" name="ChildSupportPayments" data-value="false">No</button>
                 </div>
                 <div class="form-title">What court issued the child support?</div>
                 <input type="text" class="formField" name="CourtIssuingChildSupportOrder" placeholder="Court Name">
-                <div class="form-title">What is your child support <br>collections unit?</div>
+                <div class="form-title">What is your collections unit?</div>
                 <input type="text" class="formField" name="SupportCollectionsUnit" placeholder="Collections Unit">
-                <div class="button-container" name="submitChildSupportExtendedContainer" style="display: none;">
+                <div class="button-container" name="submitChildSupportExtendedContainer" style="visibility: hidden; margin-top: 75px;">
                     <button class="submitButton" name="submitChildSupportExtended">Submit</button>
                 </div>
             </div>
@@ -169,7 +169,7 @@
                 extendedForm.style.display = "block";
 
                 childSupportCollector.addEventListener('blur', () => {
-                    submitContainer.style.display = "block";
+                    submitContainer.style.visibility = "visible";
                 });
             });
             noButton.addEventListener('click', () => {
@@ -186,14 +186,14 @@
                     const arrearsInput = document.querySelector('input[name="ChildSupportArrears"]');
                     const submitContainer = document.createElement('div');
                     submitContainer.className = 'button-container';
-                    submitContainer.style.display = 'none';
+                    submitContainer.style.visibility = 'hidden';
                     submitContainer.innerHTML = `
                         <button class="submitButton" name="submitPaymentsBehind">Submit</button>
                     `;
                     paymentsBehindForm.appendChild(submitContainer);
 
                     arrearsInput.addEventListener('blur', () => {
-                        submitContainer.style.display = 'flex';
+                        submitContainer.style.visibility = 'visible';
                     });
 
                     // Add click listener to the new submit button
