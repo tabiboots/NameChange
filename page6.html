@@ -79,10 +79,19 @@
 
         eventBus.on("page6Roses", () => {
             const roses = document.querySelector(".roses");
-            roses.style.display = "block";
             
-            // Fade in roses
-            setTimeout(() => {
+            // First set display block with opacity 0
+            roses.style.display = "block";
+            roses.style.opacity = "0";
+            
+            // Force a reflow before starting the transition
+            roses.offsetHeight;
+            
+            // Add transition property explicitly
+            roses.style.transition = "opacity 1.5s ease-in";
+            
+            // Start fade in
+            requestAnimationFrame(() => {
                 roses.style.opacity = "1";
                 
                 // After roses fade in, show cat and start its animation
@@ -94,8 +103,8 @@
                     setTimeout(() => {
                         cat.classList.add('animate');
                     }, 1500); // Wait for fade-in to complete
-                }, 1500); // Wait 1 second after roses fade in
-            }, 10);
+                }, 1500); // Wait for roses fade in
+            });
         });
 
         eventBus.on("MaritalStatus", () => {
