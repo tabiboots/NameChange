@@ -211,29 +211,40 @@ const dialogueSequences = {
             {string: "Have you ever been married <br>before?", speed: "normal", lover: true, onComplete: "MaritalStatusPreviousMarriage"},
         ],
         Interlude: [
-            // {string: "I'm sorry, but we have <br>important legal work to do!", speed: "normal"},
-            // {clear: true, delay: 700},
-            // {string: "Please bunny! Just a <br>few more questions!", speed: "normal", lover: true},
-            // {clear: true, delay: 1000},
-            // {string: "I fell in love when I saw <br>them fixing that form!", speed: "normal", lover: true},
-            // {clear: true, delay: 1000},
-            // {string: "They looked so strong, <br>yet gentle.", speed: "normal", lover: true},
-            // {clear: true, delay: 1000},
-            // {string: "Fine... but keep it snappy!", speed: "normal"},
-            // {clear: true, delay: 1000},
-            // {string: "I just had six beautiful <br>kittens.", speed: "normal", lover: true},
-            // {clear: true, delay: 1000},
+            {string: "I'm sorry, but we have <br>important legal work to do!", speed: "normal"},
+            {clear: true, delay: 700},
+            {string: "Please bunny! Just a <br>couple more questions!", speed: "normal", lover: true},
+            {clear: true, delay: 1000},
+            {string: "I fell in love when I saw <br>them fixing that form!", speed: "normal", lover: true},
+            {clear: true, delay: 1000},
+            {string: "They looked so strong, <br>yet gentle.", speed: "normal", lover: true},
+            {clear: true, delay: 1000},
+            {string: "Fine... but keep it snappy!", speed: "normal"},
+            {clear: true, delay: 1000},
+            {string: "I have six beautiful <br>kittens. You'd love them!", speed: "normal", lover: true},
+            {clear: true, delay: 1000},
             {string: "Do you have any kids?", speed: "normal", lover: true, onComplete: "ChildrenUnder21"},
         ],
         Under21Yes: [
             {string: "Oh! This is actually <br>relevant to the form!", speed: "normal"},
             {clear: true, delay: 700},
-            {string: "Do you pay any child support?", speed: "normal"},
+            {string: "Do you pay any child support?", speed: "normal", onComplete: "catWalk"},
             {clear: true, delay: 700},
             {string: "What a mood killer <br>for our first date.", speed: "normal", lover: true, onComplete: "ChildSupport"}
         ],
         moveToSpousalSupport: [
-            {string: "Seems like you're a little <br>too busy for a date.", speed: "normal", lover: true}
+            {string: "Just thought of another <br>question!", speed: "normal"},
+            {clear: true, delay: 700},
+            {string: "Uhhhhggggg.", speed: "normal", lover: true},
+            {clear: true, delay: 700},
+            {string: "Do you pay any spousal <br>support?", speed: "normal", onComplete: "SpousalSupport"}
+        ],
+        moveToPage7: [
+            {string: "Well, I can see you're <br>a little busy right now.", speed: "normal", lover: true},
+            {clear: true, delay: 700},
+            {string: `Come visit me at the <br>${localStorage.getItem('County')} courthouse though.`, speed: "normal", lover: true},
+            {clear: true, delay: 700},
+            {string: "I spend most of my time <br>there, anyway.", speed: "normal", lover: true, onComplete: "loverFadeOut"}
         ]
     }
 }; 

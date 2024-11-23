@@ -28,14 +28,14 @@
                 <div class="form-title" name="loverFormTitle">Do you have any children under twenty-one?</div>
                 <div class="button-container" name="ChildrenUnder21Buttons">
                     <button class="responseButton" name="ChildrenUnder21" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.Under21Yes)">Yes</button>
-                    <button class="responseButton" name="ChildrenUnder21" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.moveToSpousalSupport)">No</button>
+                    <button class="responseButton" name="ChildrenUnder21" data-value="false" onclick="window.determineNextStep()">No</button>
                 </div>
             </div>
             <div class="form-wrapper" name="ChildSupport" style="display: none;">
                 <div class="form-title">Do you have to pay child support?</div>
                 <div class="button-container" name="ChildSupportButtons">
                     <button class="responseButton" name="ChildSupport" data-value="true">Yes</button>
-                    <button class="responseButton" name="ChildSupport" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.moveToSpousalSupport)">No</button>
+                    <button class="responseButton" name="ChildSupport" data-value="false" onclick="window.determineNextStep()">No</button>
                 </div>
             </div>
             <div class = "form-wrapper" name="ChildSupportExtended" style="display: none;">
@@ -62,6 +62,25 @@
                     <button class="responseButton" name="SpousalSupport" data-value="true">Yes</button>
                     <button class="responseButton" name="SpousalSupport" data-value="false">No</button>
                 </div>
+            </div>
+            <div class="form-wrapper" name="extendedSpousalSupport" style="display: none;">
+                <div class="form-title">Are your spousal support <br>payments up to date?</div>
+                <div class="button-container" name="extendedSpousalSupportButtons">
+                    <button class="responseButton" name="SpousalSupportPayments" data-value="true">Yes</button>
+                    <button class="responseButton" name="SpousalSupportPayments" data-value="false">No</button>
+                </div>
+                <div class="form-title">What court issued the spousal support?</div>
+                <input type="text" class="formField" name="CourtIssuingSpousalSupportOrder" placeholder="Court Name">
+                <div class="button-container" name="submitExtendedSpousalSupportContainer" style="visibility: hidden; margin-top: 75px;">
+                    <button class="submitButton" name="submitExtendedSpousalSupport" onclick="overdueSpousalSupport()">Submit</button>
+                </div>
+            </div>
+                <div class="form-wrapper" name="overdueSpousalSupport" style="display: none;">
+                    <div class="form-title">How much are you behind on your spousal support payments?</div>
+                    <input type="text" class="formField" name="SpousalSupportArrears" placeholder="$">
+                    <div class="button-container" name="submitSpousalPaymentsBehindContainer" style="visibility: hidden; margin-top: 75px;">
+                        <button class="submitButton" name="submitSpousalPaymentsBehind" onclick="window.dialogueManager.loadDialogue(window.dialogueSequences.page6.moveToPage7)">Submit</button>
+                    </div>
             </div>
             <div class="catSitting"></div>
         </div>
@@ -156,10 +175,7 @@
             });
         });
 
-        eventBus.on("ChildSupport", () => {
-            const childSupportForm = document.querySelector('.form-wrapper[name="ChildSupport"]');
-            childSupportForm.style.display = "block";
-
+        eventBus.on("catWalk", () => {
             const cat = document.querySelector('.catSitting');
             cat.classList.remove('animate');
             cat.classList.add('catSitUp');
@@ -174,7 +190,12 @@
                     cat.classList.remove('catWalking');
                     cat.classList.add('catSitDown');
                 }, { once: true });
-            }, { once: true });
+            }, { once: true }); 
+        });
+
+        eventBus.on("ChildSupport", () => {
+            const childSupportForm = document.querySelector('.form-wrapper[name="ChildSupport"]');
+            childSupportForm.style.display = "block";
 
             const yesButton = document.querySelector('button[name="ChildSupport"][data-value="true"]');
             const noButton = document.querySelector('button[name="ChildSupport"][data-value="false"]');
@@ -205,7 +226,7 @@
                     submitContainer.className = 'button-container';
                     submitContainer.style.visibility = 'hidden';
                     submitContainer.innerHTML = `
-                        <button class="submitButton" name="submitPaymentsBehind" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.moveToSpousalSupport)">Submit</button>
+                        <button class="submitButton" name="submitPaymentsBehind" onclick="dialogueManager.loadDialogue(window.determineNextStep())">Submit</button>
                     `;
                     paymentsBehindForm.appendChild(submitContainer);
 
@@ -221,7 +242,7 @@
                 } else {
                     // Wrap the dialogue call in a small delay to ensure modules are loaded
                     setTimeout(() => {
-                        window.dialogueManager.loadDialogue(window.dialogueSequences.page6.moveToSpousalSupport);
+                        window.determineNextStep();
                     }, 0);
                 }
             });
@@ -237,6 +258,109 @@
                 // Store the selection value
                 localStorage.setItem('ChildSupportPayments', button.dataset.value);
             });
+        });
+
+        eventBus.on("SpousalSupport", () => {
+            const spousalSupportForm = document.querySelector('.form-wrapper[name="SpousalSupport"]');
+            spousalSupportForm.style.display = "block";
+            const extendedSpousalSupportForm = document.querySelector('.form-wrapper[name="extendedSpousalSupport"]');
+            const yesButton = document.querySelector('button[name="SpousalSupport"][data-value="true"]');
+            const noButton = document.querySelector('button[name="SpousalSupport"][data-value="false"]');
+            noButton.addEventListener('click', () => {
+                spousalSupportForm.style.display = "none";
+                window.dialogueManager.loadDialogue(window.dialogueSequences.page6.moveToPage7);
+            });
+            yesButton.addEventListener('click', () => {
+                spousalSupportForm.style.display = "none";
+                extendedSpousalSupportForm.style.display = "block";
+            });
+        });
+
+        const spousalSupportPaymentButtons = document.querySelectorAll('button[name="SpousalSupportPayments"]');
+        spousalSupportPaymentButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove selected class from all buttons
+                spousalSupportPaymentButtons.forEach(btn => btn.classList.remove('loverSelected'));
+                // Add selected class to clicked button
+                button.classList.add('loverSelected');
+                // Store the selection value
+                localStorage.setItem('SpousalSupportPayments', button.dataset.value);
+            });
+        });
+
+        // Make the function available globally
+        window.determineNextStep = function() {
+            const isCurrentlyMarried = localStorage.getItem('CurrentlyMarried') === 'true';
+            const wasPreviouslyMarried = localStorage.getItem('PreviouslyMarried') === 'true';
+            
+            if (isCurrentlyMarried || wasPreviouslyMarried) {
+                window.dialogueManager.loadDialogue(window.dialogueSequences.page6.moveToSpousalSupport);
+            } else {
+                window.dialogueManager.loadDialogue(window.dialogueSequences.page6.moveToPage7);
+                localStorage.setItem('SpousalSupport', 'false');
+            }
+        };
+
+        // Add this with your other event listeners
+        const courtInput = document.querySelector('input[name="CourtIssuingSpousalSupportOrder"]');
+        const submitContainer = document.querySelector('div[name="submitExtendedSpousalSupportContainer"]');
+
+        courtInput.addEventListener('blur', () => {
+            submitContainer.style.visibility = "visible";
+        });
+
+        // Add this function and make it globally available
+        window.overdueSpousalSupport = function() {
+            const extendedForm = document.querySelector('.form-wrapper[name="extendedSpousalSupport"]');
+            const paymentsBehindContainer = document.querySelector('div[name="overdueSpousalSupport"]');
+            const paymentsBehindForm = document.querySelector('input[name="SpousalSupportArrears"]');
+            const submitContainer = document.querySelector('div[name="submitSpousalPaymentsBehindContainer"]');
+
+            if (!extendedForm) {
+                console.error('Could not find extended form');
+                return;
+            }
+
+            extendedForm.style.display = "none";
+            
+            if (localStorage.getItem('SpousalSupportPayments') === 'false') {
+                paymentsBehindContainer.style.display = "block";
+                paymentsBehindForm.addEventListener('blur', () => {
+                    submitContainer.style.visibility = "visible";
+                });
+
+                const submitButton = document.querySelector('button[name="submitSpousalPaymentsBehind"]');
+                submitButton.addEventListener('click', () => {
+                    paymentsBehindContainer.style.display = "none";
+                    window.dialogueManager.loadDialogue(window.dialogueSequences.page6.moveToPage7);
+                });
+            } else {
+                window.dialogueManager.loadDialogue(window.dialogueSequences.page6.moveToPage7);
+            }
+        };
+
+        eventBus.on("loverFadeOut", () => {
+            // Fade out elements with transition
+            const roses = document.querySelector('.roses');
+            const catSitting = document.querySelector('.catSitting');
+            const catSitUp = document.querySelector('.catSitUp');
+            
+            if (roses) {
+                roses.style.transition = "opacity 1.5s ease";
+                roses.style.opacity = "0";
+            }
+            if (catSitting) {
+                catSitting.style.transition = "opacity 1.5s ease";
+                catSitting.style.opacity = "0";
+            }
+            if (catSitUp) {
+                catSitUp.style.transition = "opacity 1.5s ease";
+                catSitUp.style.opacity = "0";
+            }
+            
+            setTimeout(() => {
+                window.location.href = 'page7.html';
+            }, 1500);
         });
     </script>
 </body>

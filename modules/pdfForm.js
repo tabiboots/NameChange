@@ -56,7 +56,11 @@ class PDFFormScanner {
             ChildSupportPayments: { type: 'radio', value: localStorage.getItem('ChildSupportPayments')},
             CourtIssuingChildSupportOrder: { type: 'text', value: localStorage.getItem('CourtIssuingChildSupportOrder')},
             SupportCollectionsUnit: { type: 'text', value: localStorage.getItem('SupportCollectionsUnit')},
-            ChildSupportArrears: { type: 'text', value: localStorage.getItem('ChildSupportArrears')}
+            ChildSupportArrears: { type: 'text', value: localStorage.getItem('ChildSupportArrears')},
+            SpousalSupport: { type: 'radio', value: localStorage.getItem('SpousalSupport')},
+            SpousalSupportPayments: { type: 'radio', value: localStorage.getItem('SpousalSupportPayments')},
+            CourtIssuingSpousalSupportOrder: { type: 'text', value: localStorage.getItem('CourtIssuingSpousalSupportOrder')},
+            SpousalSupportArrears: { type: 'text', value: localStorage.getItem('SpousalSupportArrears')},
 
 
         };
