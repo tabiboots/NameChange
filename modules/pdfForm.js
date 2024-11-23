@@ -61,6 +61,8 @@ class PDFFormScanner {
             SpousalSupportPayments: { type: 'radio', value: localStorage.getItem('SpousalSupportPayments')},
             CourtIssuingSpousalSupportOrder: { type: 'text', value: localStorage.getItem('CourtIssuingSpousalSupportOrder')},
             SpousalSupportArrears: { type: 'text', value: localStorage.getItem('SpousalSupportArrears')},
+            SealingRequest: { type: 'radio', value: localStorage.getItem('SealingRequest')},
+            SealingRequestSpecify: { type: 'text', value: localStorage.getItem('SealingRequestSpecify')},
 
 
         };

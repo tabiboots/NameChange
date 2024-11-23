@@ -246,6 +246,37 @@ const dialogueSequences = {
             {clear: true, delay: 700},
             {string: "I spend most of my time <br>there, anyway.", speed: "normal", lover: true, onComplete: "loverFadeOut"}
         ]
+    },
+    page7: {
+        initial: [
+            {string: "This is the last page of the <br>form. So exciting!", speed: "normal"},
+            {clear: true, delay: 700},
+            {string: "Just a couple questions as our <br>machines fill out your info.", speed: "normal", onComplete: "SealingRequest"}
+        ],
+        SealingRequestYes: [
+            {string: "Could you tell me why you want <br>this record sealed?", speed: "normal", onComplete: "SealingRequestSpecify"}
+        ],
+        supportingForms: [
+            {string: "Two more questions!", speed: "normal", onComplete: "supportingForms"}
+        ],
+        supportingFormsYes: [
+            {string: "What forms would you like to <br>include with your request?", speed: "normal", onComplete: "supportingFormsSpecify"}
+        ],
+        reasonForNameChange: [
+            {string: "Finally, why do you want to <br>change your name?", speed: "normal", onComplete: "reasonForNameChange"}
+        ],
+        moveToPage8: [
+            {string: "With that, our journey <br>comes to an end.", speed: "normal"},
+            {clear: true, delay: 700},
+            {string: " ", speed: "normal", onComplete: "moveToPage8"}
+        ]
+    },
+    page8: {
+        initial: [
+            {string: "Thank you for using the <br>New York Name Change Game!", speed: "normal"},
+            {clear: true, delay: 700},
+            {string: "Click the button above to <br>download your form.", speed: "normal"},
+        ]
     }
 }; 
 
