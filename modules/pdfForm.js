@@ -65,7 +65,7 @@ class PDFFormScanner {
             'SealingRequest-specify': { type: 'text', value: localStorage.getItem('SealingRequest-specify')},
             SupportingDocument: { type: 'radio', value: localStorage.getItem('SupportingDocument')},
             'SupportingDocument-specify': { type: 'text', value: localStorage.getItem('SupportingDocument-specify')},
-            'ReasonForNameChangeRequest-specify': { type: 'text', value: localStorage.getItem('ReasonForNameChangeRequest-specify')},
+            'ReasonsForNameChangeRequest-specify': { type: 'text', value: localStorage.getItem('ReasonsForNameChangeRequest-specify')},
 
 
 
@@ -107,8 +107,14 @@ class PDFFormScanner {
                 case 'radio':
                     field = this.form.getRadioGroup(fieldName);
                     if (field && fieldInfo.value) {
-                        // Convert true/false to Yes/No
-                        const radioValue = fieldInfo.value.toLowerCase() === 'true' ? 'Yes' : 'No';
+                        let radioValue;
+                        // Special case for sealing request
+                        if (fieldName === 'SealingRequest') {
+                            radioValue = fieldInfo.value.toLowerCase() === 'true' ? '29' : '10';
+                        } else {
+                            // Default case for other radio groups
+                            radioValue = fieldInfo.value.toLowerCase() === 'true' ? 'Yes' : 'No';
+                        }
                         field.select(radioValue);
                         console.log(`Selected ${fieldName} with value:`, radioValue);
                     }
