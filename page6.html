@@ -28,14 +28,14 @@
                 <div class="form-title" name="loverFormTitle">Do you have any children under twenty-one?</div>
                 <div class="button-container" name="ChildrenUnder21Buttons">
                     <button class="responseButton" name="ChildrenUnder21" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.Under21Yes)">Yes</button>
-                    <button class="responseButton" name="ChildrenUnder21" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.Under21No)">No</button>
+                    <button class="responseButton" name="ChildrenUnder21" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.moveToSpousalSupport)">No</button>
                 </div>
             </div>
             <div class="form-wrapper" name="ChildSupport" style="display: none;">
                 <div class="form-title">Do you have to pay child support?</div>
                 <div class="button-container" name="ChildSupportButtons">
                     <button class="responseButton" name="ChildSupport" data-value="true">Yes</button>
-                    <button class="responseButton" name="ChildSupport" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.ChildSupportNo)">No</button>
+                    <button class="responseButton" name="ChildSupport" data-value="false" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.moveToSpousalSupport)">No</button>
                 </div>
             </div>
             <div class = "form-wrapper" name="ChildSupportExtended" style="display: none;">
@@ -55,6 +55,13 @@
             <div class="form-wrapper" name="PaymentsBehind" style="display: none;">
                 <div class="form-title">How much are you behind on your child support payments?</div>
                 <input type="text" class="formField" name="ChildSupportArrears" placeholder="$">
+            </div>
+            <div class="form-wrapper" name="SpousalSupport" style="display: none;">
+                <div class="form-title">Do you have to pay spousal support?</div>
+                <div class="button-container" name="SpousalSupportButtons">
+                    <button class="responseButton" name="SpousalSupport" data-value="true">Yes</button>
+                    <button class="responseButton" name="SpousalSupport" data-value="false">No</button>
+                </div>
             </div>
             <div class="catSitting"></div>
         </div>
@@ -76,6 +83,7 @@
         import dialogueManager from './modules/dialogueManager.js';
         import dialogueSequences from './modules/dialogueData.js';
         window.dialogueManager = dialogueManager;
+        window.dialogueSequences = dialogueSequences;
 
         eventBus.on("page6Roses", () => {
             const roses = document.querySelector(".roses");
@@ -197,7 +205,7 @@
                     submitContainer.className = 'button-container';
                     submitContainer.style.visibility = 'hidden';
                     submitContainer.innerHTML = `
-                        <button class="submitButton" name="submitPaymentsBehind">Submit</button>
+                        <button class="submitButton" name="submitPaymentsBehind" onclick="dialogueManager.loadDialogue(dialogueSequences.page6.moveToSpousalSupport)">Submit</button>
                     `;
                     paymentsBehindForm.appendChild(submitContainer);
 
@@ -211,7 +219,10 @@
                         paymentsBehindForm.style.display = "none";
                     });
                 } else {
-                    return;
+                    // Wrap the dialogue call in a small delay to ensure modules are loaded
+                    setTimeout(() => {
+                        window.dialogueManager.loadDialogue(window.dialogueSequences.page6.moveToSpousalSupport);
+                    }, 0);
                 }
             });
         });

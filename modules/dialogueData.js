@@ -228,12 +228,12 @@ const dialogueSequences = {
         Under21Yes: [
             {string: "Oh! This is actually <br>relevant to the form!", speed: "normal"},
             {clear: true, delay: 700},
-            {string: "Do you pay any child support?", speed: "normal", onComplete: "ChildSupport"},
+            {string: "Do you pay any child support?", speed: "normal"},
             {clear: true, delay: 700},
-            {string: "What a mood killer <br>for our first date.", speed: "normal", lover: true}
+            {string: "What a mood killer <br>for our first date.", speed: "normal", lover: true, onComplete: "ChildSupport"}
         ],
-        Under21No: [
-            {string: "More time to help me <br>look after the babies!", speed: "normal", lover: true}
+        moveToSpousalSupport: [
+            {string: "Seems like you're a little <br>too busy for a date.", speed: "normal", lover: true}
         ]
     }
 }; 
