@@ -62,7 +62,13 @@ class PDFFormScanner {
             CourtIssuingSpousalSupportOrder: { type: 'text', value: localStorage.getItem('CourtIssuingSpousalSupportOrder')},
             SpousalSupportArrears: { type: 'text', value: localStorage.getItem('SpousalSupportArrears')},
             SealingRequest: { type: 'radio', value: localStorage.getItem('SealingRequest')},
-            SealingRequestSpecify: { type: 'text', value: localStorage.getItem('SealingRequestSpecify')},
+            'SealingRequest-specify': { type: 'text', value: localStorage.getItem('SealingRequest-specify')},
+            SupportingDocument: { type: 'radio', value: localStorage.getItem('SupportingDocument')},
+            'SupportingDocument-specify': { type: 'text', value: localStorage.getItem('SupportingDocument-specify')},
+            'ReasonForNameChangeRequest-specify': { type: 'text', value: localStorage.getItem('ReasonForNameChangeRequest-specify')},
+
+
+
 
 
         };
