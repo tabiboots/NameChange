@@ -6,7 +6,7 @@ export default class DialogueManager {
         this.speeds = {
             pause: 500,
             slow: 80,
-            normal: 50,
+            normal: 40,
             fast: 30,
         };
         this.characters = [];

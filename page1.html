@@ -21,8 +21,8 @@
                        type="text" 
                        placeholder="Current legal name"
                        onblur="dialogueManager.loadDialogue(dialogueSequences.page1.onHoverBox1)">
-                
                 <div class="form-title">What type of court would <br> you like to file in?</div>
+                <img class = infoButton src="./assets/infoButton.png" onclick="showInfoWindow()">
                 <select name="CourtType" 
                         class="formField" 
                         onchange="dialogueManager.loadDialogue(dialogueSequences.page1.onClickBox2)">
@@ -113,6 +113,10 @@
             </div>
         </div>  
     </div>
+    <div class ="infoWrapper" style="display: none;">
+        <button class="closeButton">X</button>
+        <h1>New York City Civil: <br> For residents of New York City. <br> County/Supreme: <br>For New York residents outside <br>of New York City.<br> Civil/County court is often <br>cheaper to file in. </h1>
+    </div>
     <script type="module">
         import { eventBus } from './modules/eventBus.js';
         eventBus.on('page1Form', () => {
@@ -123,6 +127,20 @@
                 document.querySelector('.submitButton').style.visibility = 'visible';
             });
         });
+
+        window.showInfoWindow = function() {
+            const infoWindow = document.querySelector('.infoWrapper');
+            const closeButton = document.querySelector('.closeButton');
+            closeButton.addEventListener('click', () => {
+                infoWindow.style.display = 'none';
+            });
+            // Simply toggle based on the current display state
+            if (infoWindow.style.display === 'none') {
+                infoWindow.style.display = 'block';
+            } else {
+                infoWindow.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
