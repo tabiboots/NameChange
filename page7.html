@@ -10,6 +10,7 @@
     <div class="container-wrapper">
         <div class="gameContainer">
             <div class="form-wrapper" name="SealingRequest" style="display: none;">
+                <img class = infoButton src="./assets/infoButton.png" onclick="showInfoWindow()" style = "left: 20px;">
                 <div class="form-title">Should this court record be sealed for your personal safety?</div>
                 <div class="button-container">
                     <button class="responseButton" name="SealingRequest" data-value="true" onclick="dialogueManager.loadDialogue(dialogueSequences.page7.SealingRequestYes)">Yes</button>
@@ -54,6 +55,10 @@
             </div>
         </div>
     </div>
+    <div class ="infoWrapper" style="display: none;">
+        <button class="closeButton">X</button>
+        <h1>Sealing a record means <br>it will not be visible in <br>any public records.</h1>
+    </div>
     <script type="module" src="script.js"></script>
     <script type="module">
         import formManager from './modules/formManager.js';
@@ -72,8 +77,11 @@
         // Add click listeners to both sealing request buttons
         document.querySelectorAll('button[name="SealingRequest"]').forEach(button => {
             button.addEventListener('click', () => {
+                const infoWrapper = document.querySelector('.infoWrapper');
                 const sealingRequestForm = document.querySelector('.form-wrapper[name="SealingRequest"]');
                 sealingRequestForm.style.display = "none";
+                infoWrapper.style.display = "none";
+                
             });
         });
 
@@ -139,6 +147,21 @@
                 window.location.href = 'page8.html';
             }, 1000);
         });
+
+
+        window.showInfoWindow = function() {
+            const infoWindow = document.querySelector('.infoWrapper');
+            const closeButton = document.querySelector('.closeButton');
+            closeButton.addEventListener('click', () => {
+                infoWindow.style.display = 'none';
+            });
+            // Simply toggle based on the current display state
+            if (infoWindow.style.display === 'none') {
+                infoWindow.style.display = 'block';
+            } else {
+                infoWindow.style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
