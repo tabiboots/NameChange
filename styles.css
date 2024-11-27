@@ -269,6 +269,9 @@ body {
     background: url('assets/bunnysheetleft.png') left center;
     z-index: 2;
     animation: bunnyFadeIn 1.5s steps(6) forwards, hopleftAnimationPage2 .8s steps(8) 3 2s, bunnyMovementPage2 2.4s steps(1)forwards 2s;
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
 }
 
 @keyframes hopleftAnimationPage2 {
@@ -408,6 +411,9 @@ body {
     height: 32px;
     background: url('assets/bunnysheetprofile.png') left center;
     transform: scale(4);
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
 }
 
 .profileBunny.idle {
@@ -541,6 +547,9 @@ body {
     width: 18px;
     height: 18px;
     transform: scale(6);
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
 }
 
 .lilDudeWalking {
@@ -551,6 +560,9 @@ body {
     width: 18px;
     height: 18px;
     transform: scale(6);
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
 }
 
 span.lilDudeText {
@@ -712,6 +724,9 @@ span.lover {
     opacity: 0;
     transition: opacity 1s ease;
     background-position: 0 0;
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
 }
 
 .catSitting.animate {
@@ -728,6 +743,9 @@ span.lover {
     background: url('assets/catSitUp.png') left center;
     animation: catSitUpAnimation 1s steps(4) forwards;
     transform: scale(4);
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
 }
 
 @keyframes catSitUpAnimation {
@@ -739,6 +757,9 @@ span.lover {
     background: url('assets/catWalking.png') left center;
     animation: catWalkingAnimation 1s steps(3) forwards 2, catWalkingMovement 2s forwards steps(12);
     transform: scale(4);
+    image-rendering: pixelated;             
+    image-rendering: crisp-edges;           
+    -ms-interpolation-mode: nearest-neighbor; 
 }
 
 @keyframes catWalkingAnimation {
