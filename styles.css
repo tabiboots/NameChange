@@ -869,3 +869,11 @@ span.lover {
     margin-bottom: 4px;
     margin-top: 8px;
 }
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
