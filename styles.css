@@ -98,11 +98,11 @@ body {
 .startButton {
     margin-top: 10px;
     background-color: rgb(0, 0, 0);
-    color: rgb(0, 128, 255);
+    color: rgb(255, 255, 255);
     border: none;
     font-family: 'Silver', sans-serif;
     font-size: 40px;
-    border: 3px solid rgb(0, 128, 255);
+    border: 3px solid rgb(255, 255, 255);
     transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
@@ -110,8 +110,8 @@ body {
     transform: scale(1.1); 
     box-shadow: 0 0 10px #fff,
                 0 0 20px #fff,
-                0 0 30px #002ae6,
-                0 0 40px #87c5ff;
+                0 0 30px #7a7a7a,
+                0 0 40px #1f1f1f;
     cursor: pointer;
     background-color: hsl(0, 0%, 100%);
     color: black;
@@ -384,7 +384,7 @@ body {
         transform: scale(1);
     }
     50% { 
-        transform: scale(1.05);  // Only grows 5% larger
+        transform: scale(1.05);  /* Only grows 5% larger */
     }
     100% { 
         transform: scale(1);
@@ -816,7 +816,7 @@ span.lover {
 
     height: 30px;
     cursor: pointer;
-    transition: transform 0.5s ease, filter 0.2 ease,
+    transition: transform 0.5s ease, filter 0.2s ease
 }
 
 .infoButton:hover {
@@ -867,4 +867,13 @@ span.lover {
     color: #888;
     margin-bottom: 4px;
     margin-top: 8px;
+}
+
+.primerText {
+    font-family: 'Silver', sans-serif;
+    bottom: 50px;
+    font-size: 20px;
+    color: white;
+    position: relative;
+    width: 100%;
 }
