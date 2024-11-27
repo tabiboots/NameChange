@@ -10,8 +10,6 @@
     <script type="module" src="script.js"></script>
     <script type="module">
         import formManager from './modules/formManager.js';
-        import { eventBus } from './modules/eventBus.js';
-        import { incrementPageCounter } from './script.js';
         window.formManager = formManager;
     </script>
     <div class="container-wrapper">
@@ -121,16 +119,13 @@
     </div>
     <script type="module">
         import { eventBus } from './modules/eventBus.js';
-
-        if (parseInt(localStorage.getItem('pagesCompleted')) < 1) {
-            eventBus.on('page1Form', () => {
-                document.querySelector('.form-wrapper').style.display = 'block';
+        eventBus.on('page1Form', () => {
+            document.querySelector('.form-wrapper').style.display = 'block';
             
+            // Add event listener for county form title
             document.querySelector('[name="County"]').addEventListener('blur', () => {
                 document.querySelector('.submitButton').style.visibility = 'visible';
-                localStorage.setItem('pagesCompleted', (Math.max(parseInt(localStorage.getItem('pagesCompleted')), 1)).toString());
             });
-<<<<<<< Updated upstream
         });
 
         window.showInfoWindow = function() {
