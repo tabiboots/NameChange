@@ -10,7 +10,8 @@
     <div class="container-wrapper">
             <div class="gameContainer">
                 <div class=form-titlepage2>What is your home address?</div>
-                <input id="dynamicInput" class="formfieldpage2" placeholder="Street, Country, City, State, Zip" onclick="dialogueManager.loadDialogue(dialogueSequences.page2.onClickBox1)" type="text" placeholder></input>
+                <div class="form-subtitle" name="brokenFormTitle2" style="margin-top: 10px; position: absolute; top: 225px;">Street, city, state, zip, and country.</div>
+                <input id="dynamicInput" class="formfieldpage2" onclick="dialogueManager.loadDialogue(dialogueSequences.page2.onClickBox1)" type="text" placeholder></input>
                 <button class="submitButton" style="display: none; margin-top: 300px;" onclick="window.location.href='page3.html';">Next</button>
                 <div class="button-container" name="page2ResponseButtons" style="display: none;">
                     <button class="responseButton" id="speechOptionButton" onclick="dialogueManager.loadDialogue(dialogueSequences.page2.onClickDialogue1)">

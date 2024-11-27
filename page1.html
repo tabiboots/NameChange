@@ -36,7 +36,9 @@
                        name="County" 
                        class="formField" 
                        placeholder="Select or type a county"
-                       onblur="dialogueManager.loadDialogue(dialogueSequences.page1.onClickBox3)">
+                       onblur="this.value ? 
+                              dialogueManager.loadDialogue(dialogueSequences.page1.onClickBox3) : 
+                              dialogueManager.loadDialogue(dialogueSequences.page1.emptyBox3)">
                 <datalist id="counties">
                     <option value="Albany">
                     <option value="Allegany">

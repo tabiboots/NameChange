@@ -18,6 +18,9 @@ const dialogueSequences = {
             {string: "So many counties...", speed: "normal", overwrite: true},
             {clear: true, delay: 400},
             {string: (storage) => `${storage.getItem('County')} is my favorite, <br>though!`, speed: "normal"},
+        ],
+        emptyBox3: [
+            {string: "Try selecting your county <br>before we move on.", speed: "normal"},
         ]
     },
     page2: {

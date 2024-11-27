@@ -11,6 +11,7 @@
         <div class="gameContainer">
             <div class="form-wrapper" name="brokenForm">
                 <div class="form-title" name="brokenFormTitle">What is your home address?</div>
+                <div class="form-subtitle" name="brokenFormTitle2">Street, city, state, zip, and country.</div>
                 <img src="assets/hammer.png" class="hammer" style="display: none;">
                 <div class="brokenFormFieldFix state-1"></div>
             </div>
@@ -19,9 +20,10 @@
             </div>
             <div class="form-wrapper" name="DOBandPlaceofBirth" style="width: 100%; display: none;">
                 <div class="form-title" name="DOBTitle">What is your date of birth?</div>
-                <input type="text" class="formField" name="DOB" placeholder="MM/DD/YYYY" style="width: 460px;">
+                <input type="text" class="formField" name="DOB" placeholder="MM/DD/YYYY" pattern="(0[1-9]|1[0-2])/(0[1-9]|[12]\d|3[01])/([12]\d{3})" maxlength="10" onkeypress="return /[0-9/]/.test(event.key)" oninput="this.value = this.value.replace(/^(\d\d)(\d)$/g,'$1/$2').replace(/^(\d\d\/\d\d)(\d)$/g,'$1/$2')" style="width: 460px;">
                 <div class="form-title" name="PlaceofBirthTitle">What is your place of birth?</div>
-                <input type="text" class="formField" name="PlaceofBirth" placeholder="Street, City, State, ZIP, Country" style="width: 460px;">
+                <div class="form-subtitle" name="PlaceofBirthTitle2"  style="margin-top: -10px;">Street, city, state, zip, and country.</div>
+                <input type="text" class="formField" name="PlaceofBirth" style="width: 460px;">
             </div>
             <div class="button-container" name="submitDOBandPlaceofBirthContainer" style="display: none;">
                 <button class="submitButton" name="submitDOBandPlaceofBirth" onclick="window.location.href='page6.html'">Submit</button>
@@ -96,7 +98,6 @@
                     input.style.width = '460px';
                     input.style.marginTop = '30px';
                     input.name = 'CurrentAddress';
-                    input.placeholder = 'Street, City, State, Zip, Country';
                     brokenField.replaceWith(input);
                     
                     // Initialize the new input field with FormManager
@@ -156,6 +157,7 @@
             document.querySelector('[name="submitCurrentAddressContainer"]').style.display = 'none';
             document.querySelector('[name="CurrentAddress"]').style.display = 'none';
             document.querySelector('[name="brokenFormTitle"]').style.display = 'none';
+            document.querySelector('[name="brokenFormTitle2"]').style.display = 'none';
             
             // Show the DOB and Place of Birth form
             const dobForm = document.querySelector('[name="DOBandPlaceofBirth"]');

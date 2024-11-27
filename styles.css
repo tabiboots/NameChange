@@ -169,6 +169,13 @@ body {
     text-align: center;
     margin-bottom: 10px; /* Add some space between the title and the input */
 }
+.form-subtitle {
+    font-size: 30px;
+    word-spacing: 10px;
+    color: rgb(145, 145, 145);
+    text-align: center;
+    margin-bottom: 10px; /* Add some space between the title and the input */
+}
 
 .next-button {
     font-family: 'Silver';
