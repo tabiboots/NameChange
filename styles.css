@@ -98,20 +98,20 @@ body {
 .startButton {
     margin-top: 10px;
     background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
+    color: rgb(0, 128, 255);
     border: none;
     font-family: 'Silver', sans-serif;
     font-size: 40px;
-    border: 3px solid rgb(255, 255, 255);
+    border: 3px solid rgb(0, 128, 255);
     transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
 .startButton:hover {
-    transform: scale(1.3); 
+    transform: scale(1.1); 
     box-shadow: 0 0 10px #fff,
                 0 0 20px #fff,
-                0 0 30px #b1b1b1,
-                0 0 40px #bdbdbd;
+                0 0 30px #002ae6,
+                0 0 40px #87c5ff;
     cursor: pointer;
     background-color: hsl(0, 0%, 100%);
     color: black;
@@ -809,7 +809,6 @@ span.lover {
     }
 }
 
-<<<<<<< Updated upstream
 
 .infoButton {
     position: absolute; /* Adjust as needed */
@@ -870,11 +869,3 @@ span.lover {
     margin-bottom: 4px;
     margin-top: 8px;
 }
-=======
-.intro-text {
-    font-size: 40px;
-    text-align: center;
-    font-family: 'Silver';
-    color: white;
-}
->>>>>>> Stashed changes
