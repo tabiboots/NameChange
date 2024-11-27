@@ -382,7 +382,6 @@ body {
 @keyframes subtlePulse {
     0% { 
         transform: scale(1);
-        
     }
     50% { 
         transform: scale(1.05);  // Only grows 5% larger
