@@ -39,6 +39,7 @@
                     <button class="responseButton" name="Bankruptcy" data-value="true">Yes</button>
                     <button class="responseButton" name="Bankruptcy" data-value="false">No</button>
                 </div>
+                <img class = infoButton src="./assets/infoButton.png" onclick="showInfoWindow()" style = "left: 35px; top: 270px;">
                 <div class="form-title" name="lilDudeFormTitle">Are there any judgments or liens against you?</div>
                 <div class="button-container">
                     <button class="responseButton" name="JudgmentsOrLiens" data-value="true">Yes</button>
@@ -76,6 +77,10 @@
                 <!-- dialogue text will appear here -->
             </div>
         </div>
+    </div>
+    <div class ="infoWrapper" style="display: none;">
+        <button class="closeButton">X</button>
+        <h1>A judgment is a court order that <br>requires you to pay money to <br>someone. A lien is a claim against <br>your property that must be paid.</h1>
     </div>
     <script type="module" src="script.js"></script>
     <script type="module">
@@ -162,8 +167,10 @@
             });
             
             // Add submit button listener
+            const infoWrapper = document.querySelector('.infoWrapper')
             document.querySelector('[name="SubmitBankruptcyorJudgements"]').addEventListener('click', () => {
                 document.querySelector('[name="BankruptcyorJudgements"]').style.display = 'none';
+                infoWrapper.style.display = 'none';
             });
         });
 
@@ -208,6 +215,20 @@
                 window.location.href = 'page5.html';
             }, 1000);
         });
+
+        window.showInfoWindow = function() {
+            const infoWindow = document.querySelector('.infoWrapper');
+            const closeButton = document.querySelector('.closeButton');
+            closeButton.addEventListener('click', () => {
+                infoWindow.style.display = 'none';
+            });
+            // Simply toggle based on the current display state
+            if (infoWindow.style.display === 'none') {
+                infoWindow.style.display = 'block';
+            } else {
+                infoWindow.style.display = 'none';
+            }
+        }
 
     </script>
 </body>
