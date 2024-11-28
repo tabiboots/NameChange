@@ -40,6 +40,7 @@
                     <button class="responseButton" name="Bankruptcy" data-value="false">No</button>
                 </div>
                 <div class="form-title" name="lilDudeFormTitle">Are there any judgments or liens against you?</div>
+                <img src="assets/infoButton.png" class="infoButton" onclick="showInfoWindow()">
                 <div class="button-container">
                     <button class="responseButton" name="JudgmentsOrLiens" data-value="true">Yes</button>
                     <button class="responseButton" name="JudgmentsOrLiens" data-value="false">No</button>
@@ -76,6 +77,10 @@
                 <!-- dialogue text will appear here -->
             </div>
         </div>
+    </div>
+    <div class ="infoWrapper" style="display: none;">
+        <button class="closeButton">X</button>
+        <h1>Judgement: <br> A court order that requires a person <br>to pay a debt or perform a certain action. <br>Liens: <br> A legal claim against a person's property <br>for unpaid debts or obligations.</h1>
     </div>
     <script type="module" src="script.js"></script>
     <script type="module">
@@ -127,6 +132,19 @@
 
         eventBus.on('page4JudgementsorLiens', () => {
             document.querySelector('[name="BankruptcyorJudgements"]').style.display = 'block';
+            window.showInfoWindow = function() {
+            const infoWindow = document.querySelector('.infoWrapper');
+            const closeButton = document.querySelector('.closeButton');
+            closeButton.addEventListener('click', () => {
+                infoWindow.style.display = 'none';
+            });
+            // Simply toggle based on the current display state
+            if (infoWindow.style.display === 'none') {
+                infoWindow.style.display = 'block';
+                } else {
+                    infoWindow.style.display = 'none';
+                }
+            }
             
             // Function to check if both buttons are selected
             const checkBothSelected = () => {
