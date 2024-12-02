@@ -107,14 +107,8 @@ class PDFFormScanner {
                 case 'radio':
                     field = this.form.getRadioGroup(fieldName);
                     if (field && fieldInfo.value) {
-                        let radioValue;
-                        // Special case for sealing request
-                        if (fieldName === 'SealingRequest') {
-                            radioValue = fieldInfo.value.toLowerCase() === 'true' ? '29' : '10';
-                        } else {
-                            // Default case for other radio groups
-                            radioValue = fieldInfo.value.toLowerCase() === 'true' ? 'Yes' : 'No';
-                        }
+                        // Use consistent Yes/No values for all radio groups
+                        const radioValue = fieldInfo.value.toLowerCase() === 'true' ? 'Yes' : 'No';
                         field.select(radioValue);
                         console.log(`Selected ${fieldName} with value:`, radioValue);
                     }
